@@ -1,14 +1,14 @@
 section .text
-global ft_write
+global ft_read
 extern __errno_location
 
-ft_write:
+ft_read:
     ; Arguments:
     ; rdi - file descriptor
-    ; rsi - buffer to write
-    ; rdx - number of bytes to write
+    ; rsi - buffer to read into
+    ; rdx - number of bytes to read
 
-    mov rax, 1          ; syscall number for sys_write
+    mov rax, 0          ; syscall number for sys_read
     syscall             ; make the syscall
 
     ; Check for errors
@@ -17,7 +17,7 @@ ft_write:
 
     ; Set errno
     neg rax             ; make the error code positive
-    mov rdi, rax        ; move the error code to rdi
+    mov rdi, rax        ; Move the error code to rdi
     call __errno_location wrt ..plt ; Get the address of errno
     mov [rax], edi      ; store the error code in errno
     mov rax, -1         ; set the return value to -1

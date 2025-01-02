@@ -1,6 +1,6 @@
 section .text
 global ft_strcmp
-
+extern __errno_location
 ft_strcmp:
     ; arguments:
     ; rdi - pointer to the first string (s1)
@@ -21,7 +21,7 @@ ft_strcmp:
 
 .not_equal:
     sub al, dl          ; calculate the difference between the bytes
-    movsx rax, al       ; sign-extend the result to 64 bits
+    movsx rax, al       ; copy the difference to rax (sign-extend) || movsx = move with sign extension
     ret                 ; return the result
 
 .equal:

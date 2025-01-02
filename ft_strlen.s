@@ -1,6 +1,6 @@
 section .text			; define the section as text
 global ft_strlen		; define the function as global
-
+extern __errno_location
 ft_strlen:
     xor rcx, rcx        ; clear rcx (length counter) || xor = exclusive OR
     mov rsi, rdi        ; copy the string pointer to rsi(src to dest) || mov = move
